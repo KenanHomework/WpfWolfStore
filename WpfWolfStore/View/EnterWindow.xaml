@@ -1,0 +1,89 @@
+﻿<Window x:Class="WpfWolfStore.View.EnterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfWolfStore.View"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d" WindowStyle="None" BorderBrush="#171626" BorderThickness="1"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Icon="https://res.cloudinary.com/kysbv/image/upload/v1656763604/WolfStore/logo.png"
+        Title="Wolf Store" Height="700" Width="350">
+    <Window.Background>
+        <ImageBrush ImageSource="https://wallpapercave.com/wp/wp5799488.jpg" Stretch="Fill" Opacity="0.6"></ImageBrush>
+    </Window.Background>
+    <DockPanel>
+        <!-- Title Bar -->
+        <Border Background="#40003d" DockPanel.Dock="Top" Height="25" MouseDown="Border_MouseDown">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0" Foreground="#f0f4fd" Margin="2 0" FontWeight="SemiBold" 
+                       >Login</Label>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Background="Transparent" BorderThickness="0" Width="40" Foreground="#f0f4fd" VerticalAlignment="Center" Content="_" Padding="0 0 0 8" Click="ResizeButton_Click"/>
+
+                    <Button Background="Transparent" BorderThickness="0" Width="40" Foreground="#f0f4fd" FontSize="10" VerticalAlignment="Center" Content="X" FontWeight="Bold" Click="ResizeButton_Click"/>
+
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Main Content -->
+        <Grid Margin="10 20 10 50" DockPanel.Dock="Bottom" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="130"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="60" ></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!-- Brand Row -->
+            <StackPanel Orientation="Vertical">
+                <Image Width="60" Height="60" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 5 0 2"  
+                 Source="https://res.cloudinary.com/kysbv/image/upload/v1656763604/WolfStore/logo.png"/>
+
+                <Label HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="25" Foreground="#f2ad38"
+                       FontFamily="Lucida Console" >Wolf Store</Label>
+
+                <Label HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="15" Foreground="#b43836"
+                       FontFamily="Lucida Console" >A perfect oasis for wolves</Label>
+
+            </StackPanel>
+
+            <!-- Information Text -->
+            <Label Grid.Row="1" FontSize="30" HorizontalAlignment="Center" Margin="4 0 0 0" Foreground="#b0c6da" FontFamily="Franklin Gothic Demi"
+                   >Login</Label>
+
+            <!-- Main Area -->
+            <Frame Grid.Row="2" Name="Frame"></Frame>
+
+
+            <!-- Secondary Area  -->
+            <StackPanel Grid.Row="3" Orientation="Horizontal">
+                <CheckBox VerticalAlignment="Center">
+                    <Label HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18" Foreground="#fbf479"
+                       FontFamily="Lucida Console" >Remember Me</Label>
+                </CheckBox>
+                <Button Background="Transparent" BorderThickness="0" Name="CreateAccount">
+                    <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" Foreground="#1bc5bc"
+                       FontFamily="Lucida Console" >Create Account</Label>
+                </Button>
+            </StackPanel>
+
+            <Button x:Name="Login" Grid.Row="4" 
+        Content="Login" Background="#c87f48" BorderThickness="0"/>
+        </Grid>
+    </DockPanel>
+
+</Window>
+
