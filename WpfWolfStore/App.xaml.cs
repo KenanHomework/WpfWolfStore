@@ -11,9 +11,9 @@ using WpfWolfStore.ViewModel;
 
 namespace WpfWolfStore
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
+  
+    public enum UserProcessResult { Success,UserNotFound,UserEmpty, IncorrectPassword, FileError}
+
     public partial class App : Application
     {
         public Container container = new();
@@ -27,7 +27,7 @@ namespace WpfWolfStore
         void Register()
         {
             container.RegisterSingleton<EnterWindow>();
-            //container.RegisterSingleton<LoginGeneralPage>();
+            container.RegisterSingleton<LoginGeneralPage>();
             container.RegisterSingleton<EnterWindowVM>();
             container.RegisterSingleton<LoginGeneralPageVM>();
 
@@ -36,8 +36,8 @@ namespace WpfWolfStore
 
         void AssignDataContexts()
         {
-            //container.GetInstance<EnterWindow>().DataContext = container.GetInstance<EnterWindowVM>();
-            //container.GetInstance<LoginGeneralPage>().DataContext = container.GetInstance<LoginGeneralPageVM>();
+            container.GetInstance<EnterWindow>().DataContext = container.GetInstance<EnterWindowVM>();
+            container.GetInstance<LoginGeneralPage>().DataContext = container.GetInstance<LoginGeneralPageVM>();
         }
     }
 }

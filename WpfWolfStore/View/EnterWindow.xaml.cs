@@ -25,7 +25,7 @@ namespace WpfWolfStore.View
             InitializeComponent();
             if (!Directory.Exists("Data"))
                 Directory.CreateDirectory("Data");
-            //Frame.Navigate(new LoginGeneralPage());
+            Frame.Navigate(new LoginGeneralPage());
         }
 
         private void ResizeButton_Click(object sender, RoutedEventArgs e)

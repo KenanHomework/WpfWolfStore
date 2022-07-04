@@ -33,6 +33,12 @@ namespace WpfWolfStore.ViewModel
 
         #endregion
 
+        public LoginGeneralPageVM()
+        {
+            Username = String.Empty;
+            Password = String.Empty;
+        }
+
         public bool AllInfoCorrect()
         {
             throw new NotImplementedException();

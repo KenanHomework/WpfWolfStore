@@ -10,7 +10,6 @@ namespace WpfWolfStore.Model
 {
     public class User : DependencyObject
     {
-        /* Properties */
         #region Properties
 
         public string Username
@@ -31,26 +30,44 @@ namespace WpfWolfStore.Model
             set { SetValue(EmailProperty, value); }
         }
 
+        public List<Product> Card
+        {
+            get { return (List<Product>)GetValue(CardProperty); }
+            set { SetValue(CardProperty, value); }
+        }
 
-        // Using a DependencyProperty as the backing store for Username.  This enables animation, styling, binding, etc...
+
+        public static readonly DependencyProperty CardProperty =
+            DependencyProperty.Register("Card", typeof(List<Product>), typeof(User));
+
         public static readonly DependencyProperty UsernameProperty =
             DependencyProperty.Register("Username", typeof(string), typeof(User));
 
-        // Using a DependencyProperty as the backing store for Email.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EmailProperty =
             DependencyProperty.Register("Email", typeof(MailAddress), typeof(User));
 
-        // Using a DependencyProperty as the backing store for Password.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PasswordProperty =
             DependencyProperty.Register("Password", typeof(string), typeof(User));
 
-        public User(string username, string password, MailAddress email)
+        #endregion
+
+        #region Methods
+
+        public void Buy() => Card.Clear();
+
+        public void AddToCard(Product product) { if (!Card.Contains(product)) Card.Add(product); }
+
+        public void RemoveFromCard(Product product) => Card.Remove(product);
+
+        #endregion
+
+        public User(string username, string password, MailAddress email) : this()
         {
             Username = username;
             Password = password;
             Email = email;
         }
-        public User(string username, string password, string email)
+        public User(string username, string password, string email) : this()
         {
             Username = username;
             Password = password;
@@ -61,12 +78,13 @@ namespace WpfWolfStore.Model
         {
             Username = string.Empty;
             Password = string.Empty;
+            Card = new();
         }
 
-        #endregion
-
-
-
-
+        public User(string username, string password):this()
+        {
+            Username = username;
+            Password = password;
+        }
     }
 }
