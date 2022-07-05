@@ -29,7 +29,8 @@ namespace WpfWolfStore.View
             if (!Directory.Exists("Data"))
                 Directory.CreateDirectory("Data");
             Frame.Navigate(new LoginGeneralPage());
-            UserService.WriteUser(new("kenan", "kenanYsbv", "kenanysbv@gmail.com"));
+            //UserService.WriteUser(new("kenan", "kenanYsbv", "kenanysbv@gmail.com"));
+            App.WolfStore.Save();
             //User user = UserService.ReadUser("kenan");
             //string a = user.ToString();
             //Store store = new(true);

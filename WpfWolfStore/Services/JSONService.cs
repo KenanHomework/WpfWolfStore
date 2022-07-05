@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
+using System.Text; 
 using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace WpfWolfStore.Services
 {
-    public abstract class JSONService
+    public static class JSONService
     {
         public static void Write<T>(string path, T content)
         {
@@ -16,7 +16,8 @@ namespace WpfWolfStore.Services
             {
                 File.Create(path).Close();
             }
-            File.WriteAllText(path, JsonSerializer.Serialize(content));
+            File.WriteAllText(path, JsonSerializer.Serialize(content),Encoding.Unicode);
+
         }
 
         public static T? Read<T>(string path)

@@ -19,7 +19,12 @@ namespace WpfWolfStore
     {
         //public static Container Container { get; set; }
 
-        //public static Store WolfStore { get; set; }
+        public static Store WolfStore { get; set; }
+
+        public App()
+        {
+            WolfStore = new Store();
+        }
 
         //void Register()
         //{
