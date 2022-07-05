@@ -41,7 +41,7 @@
         <!-- Main Content -->
         <Grid Margin="10 20 10 50" DockPanel.Dock="Bottom" >
             <Grid.RowDefinitions>
-                <RowDefinition Height="130"></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="60" ></RowDefinition>
@@ -55,9 +55,6 @@
                 <Label HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="25" Foreground="#f2ad38"
                        FontFamily="Lucida Console" >Wolf Store</Label>
 
-                <Label HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="15" Foreground="#b43836"
-                       FontFamily="Lucida Console" >A perfect oasis for wolves</Label>
-
             </StackPanel>
 
             <!-- Information Text -->
@@ -70,7 +67,7 @@
 
             <!-- Secondary Area  -->
             <StackPanel Grid.Row="3" Orientation="Horizontal">
-                <CheckBox VerticalAlignment="Center">
+                <CheckBox VerticalAlignment="Center" Name="RememberMe">
                     <Label HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18" Foreground="#fbf479"
                        FontFamily="Lucida Console" >Remember Me</Label>
                 </CheckBox>

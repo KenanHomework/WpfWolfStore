@@ -12,6 +12,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfWolfStore;
+using WpfWolfStore.Model;
+using WpfWolfStore.Services;
 
 namespace WpfWolfStore.View
 {
@@ -26,6 +29,21 @@ namespace WpfWolfStore.View
             if (!Directory.Exists("Data"))
                 Directory.CreateDirectory("Data");
             Frame.Navigate(new LoginGeneralPage());
+            UserService.WriteUser(new("kenan", "kenanYsbv", "kenanysbv@gmail.com"));
+            //User user = UserService.ReadUser("kenan");
+            //string a = user.ToString();
+            //Store store = new(true);
+            //User user = UserService.ReadUser("test");
+            //store.SigIn(user);
+            //store.Save();
+            //store.Remember = true;
+            //if (store.Remember)
+            //{
+            //    if (store.Login(user) == UserProcessResult.Success)
+            //    {
+            //        MessageBox.Show("Succes");
+            //    }
+            //}
         }
 
         private void ResizeButton_Click(object sender, RoutedEventArgs e)

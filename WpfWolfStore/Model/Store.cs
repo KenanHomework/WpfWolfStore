@@ -9,40 +9,15 @@ using WpfWolfStore.Services;
 
 namespace WpfWolfStore.Model
 {
-    public class Store : DependencyObject
+    public class Store 
     {
 
         #region Properties
 
-        public User User
-        {
-            get { return (User)GetValue(UserProperty); }
-            set { SetValue(UserProperty, value); }
-        }
+        public User User { get; set; }
 
-        public List<Product> Products
-        {
-            get { return (List<Product>)GetValue(ProductsProperty); }
-            set { SetValue(ProductsProperty, value); }
-        }
-
-        public bool Remember
-        {
-            get { return (bool)GetValue(RememberProperty); }
-            set { SetValue(RememberProperty, value); }
-        }
-
-
-
-        public static readonly DependencyProperty RememberProperty =
-            DependencyProperty.Register("Remember", typeof(bool), typeof(Store));
-
-        public static readonly DependencyProperty UserProperty =
-            DependencyProperty.Register("User", typeof(User), typeof(Store));
-
-        public static readonly DependencyProperty ProductsProperty =
-            DependencyProperty.Register("Products", typeof(List<Product>), typeof(Store));
-
+        public List<Product> Products { get; set; }
+        public bool Remember { get; set; }
 
         #endregion
 
@@ -52,7 +27,7 @@ namespace WpfWolfStore.Model
         {
             try
             {
-                Store temp = JSONService.Read<Store>("/data/store.json");
+                Store temp = JSONService.Read<Store>("data/store.json");
                 User = temp.User;
                 Products = temp.Products;
                 Remember = temp.Remember;
@@ -62,7 +37,7 @@ namespace WpfWolfStore.Model
             { }
         }
 
-        public void Save() => JSONService.Write("/data/store.json", this);
+        public void Save() => JSONService.Write("data/store.json", this);
 
         public UserProcessResult Login(User user)
         {
@@ -78,7 +53,7 @@ namespace WpfWolfStore.Model
             UserProcessResult result = UserService.Search(user);
             if (result == UserProcessResult.UserNotFound)
             {
-                User = UserService.ReadUser(user.Username);
+                User = user;
                 return UserProcessResult.Success;
             }
 
@@ -89,11 +64,16 @@ namespace WpfWolfStore.Model
 
         #endregion
 
-        public Store(User user) : this()
+        public Store(User user, bool load = true) : this(load)
         {
             User = user;
-        }
 
+        }
+        public Store(bool load) : this()
+        {
+            if (load)
+                Load();
+        }
         public Store()
         {
             if (!Directory.Exists("Data"))
@@ -101,6 +81,10 @@ namespace WpfWolfStore.Model
             User = null;
             Products = new();
             Remember = false;
+        }
+        ~Store()
+        {
+            Save();
         }
     }
 }

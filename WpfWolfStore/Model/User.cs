@@ -1,57 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Mail;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
 namespace WpfWolfStore.Model
 {
-    public class User : DependencyObject
+    public class User
     {
-        #region Properties
+
+        private string username;
 
         public string Username
         {
-            get { return (string)GetValue(UsernameProperty); }
-            set { SetValue(UsernameProperty, value); }
+            get => username;
+            set { username = value; }
         }
+
+        private string password;
 
         public string Password
         {
-            get { return (string)GetValue(PasswordProperty); }
-            set { SetValue(PasswordProperty, value); }
+            get => password;
+            set { password = value; }
         }
+
+        private MailAddress email;
 
         public MailAddress Email
         {
-            get { return (MailAddress)GetValue(EmailProperty); }
-            set { SetValue(EmailProperty, value); }
+            get => email;
+            set { email = value; }
         }
+
+
+        private List<Product> card;
 
         public List<Product> Card
         {
-            get { return (List<Product>)GetValue(CardProperty); }
-            set { SetValue(CardProperty, value); }
+            get { return card; }
+            set { card = value; }
         }
 
 
-        public static readonly DependencyProperty CardProperty =
-            DependencyProperty.Register("Card", typeof(List<Product>), typeof(User));
-
-        public static readonly DependencyProperty UsernameProperty =
-            DependencyProperty.Register("Username", typeof(string), typeof(User));
-
-        public static readonly DependencyProperty EmailProperty =
-            DependencyProperty.Register("Email", typeof(MailAddress), typeof(User));
-
-        public static readonly DependencyProperty PasswordProperty =
-            DependencyProperty.Register("Password", typeof(string), typeof(User));
-
-        #endregion
-
-        #region Methods
 
         public void Buy() => Card.Clear();
 
@@ -59,7 +55,6 @@ namespace WpfWolfStore.Model
 
         public void RemoveFromCard(Product product) => Card.Remove(product);
 
-        #endregion
 
         public User(string username, string password, MailAddress email) : this()
         {
@@ -81,10 +76,12 @@ namespace WpfWolfStore.Model
             Card = new();
         }
 
-        public User(string username, string password):this()
+        public User(string username, string password) : this()
         {
             Username = username;
             Password = password;
         }
+
+        public override string ToString() => $"{Username} ~ {Password} ~ {email}";
     }
 }

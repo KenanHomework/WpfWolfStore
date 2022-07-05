@@ -6,38 +6,34 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using WpfWolfStore.Model;
 using WpfWolfStore.View;
 using WpfWolfStore.ViewModel;
 
 namespace WpfWolfStore
 {
-  
-    public enum UserProcessResult { Success,UserNotFound,UserEmpty, IncorrectPassword, FileError}
+
+    public enum UserProcessResult { Success, UserNotFound, UserEmpty, IncorrectPassword, FileError }
 
     public partial class App : Application
     {
-        public Container container = new();
+        //public static Container Container { get; set; }
 
-        public App()
-        {
-            Register();
-            AssignDataContexts();
-        }
+        //public static Store WolfStore { get; set; }
 
-        void Register()
-        {
-            container.RegisterSingleton<EnterWindow>();
-            container.RegisterSingleton<LoginGeneralPage>();
-            container.RegisterSingleton<EnterWindowVM>();
-            container.RegisterSingleton<LoginGeneralPageVM>();
+        //void Register()
+        //{
+        //    Container = new();
 
-            container.Verify();
-        }
+        //    Container.RegisterSingleton<EnterWindow>();
+        //    Container.RegisterSingleton<LoginGeneralPage>();
+        //    Container.RegisterSingleton<EnterWindowVM>();
+        //    Container.RegisterSingleton<LoginGeneralPageVM>();
+        //    Container.RegisterSingleton<App>();
 
-        void AssignDataContexts()
-        {
-            container.GetInstance<EnterWindow>().DataContext = container.GetInstance<EnterWindowVM>();
-            container.GetInstance<LoginGeneralPage>().DataContext = container.GetInstance<LoginGeneralPageVM>();
-        }
+        //    Container.Verify();
+        //}
+
+
     }
 }

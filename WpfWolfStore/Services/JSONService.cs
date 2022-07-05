@@ -10,7 +10,14 @@ namespace WpfWolfStore.Services
 {
     public abstract class JSONService
     {
-        public static void Write<T>(string path, T content) => File.WriteAllText(path, JsonSerializer.Serialize(content));
+        public static void Write<T>(string path, T content)
+        {
+            if (!File.Exists(path))
+            {
+                File.Create(path).Close();
+            }
+            File.WriteAllText(path, JsonSerializer.Serialize(content));
+        }
 
         public static T? Read<T>(string path)
         {
