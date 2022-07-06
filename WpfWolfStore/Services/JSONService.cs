@@ -16,7 +16,7 @@ namespace WpfWolfStore.Services
             {
                 File.Create(path).Close();
             }
-            File.WriteAllText(path, JsonSerializer.Serialize(content),Encoding.Unicode);
+            File.WriteAllText(path, JsonSerializer.Serialize(content));
 
         }
 

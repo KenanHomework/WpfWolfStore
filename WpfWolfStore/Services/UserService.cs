@@ -45,7 +45,7 @@ namespace WpfWolfStore.Services
         {
             if (!Directory.Exists("Data"))
                 Directory.CreateDirectory("Data");
-            JSONService.Write($"Data/{user.Username}.json", JsonSerializer.Serialize<User>(user));
+            JSONService.Write($"Data/{user.Username}.json", user);
         }
 
         public static User ReadUser(string username)

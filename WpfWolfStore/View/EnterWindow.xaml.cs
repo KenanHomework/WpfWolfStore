@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,8 +30,10 @@ namespace WpfWolfStore.View
             if (!Directory.Exists("Data"))
                 Directory.CreateDirectory("Data");
             Frame.Navigate(new LoginGeneralPage());
-            //UserService.WriteUser(new("kenan", "kenanYsbv", "kenanysbv@gmail.com"));
-            App.WolfStore.Save();
+            UserService.WriteUser(new("kenan", "kenanYsbv", "kenanysbv@gmail.com"));
+            //File.WriteAllText("data/kenan.json", JsonSerializer.Serialize(new User("kenan", "kenanYsbv", "kenanysbv@gmail.com")));
+
+            //App.WolfStore.Save();
             //User user = UserService.ReadUser("kenan");
             //string a = user.ToString();
             //Store store = new(true);

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,51 +15,54 @@ namespace WpfWolfStore.Model
 
         #region Properties
 
-        public int Id
+        private int id;
+
+        public int ID
         {
-            get { return (int)GetValue(IdProperty); }
-            set { SetValue(IdProperty, value); }
+            get { return id; }
+            set { id = value; OnPropertyChanged(); }
         }
+
+        private string name;
 
         public string Name
         {
-            get { return (string)GetValue(NameProperty); }
-            set { SetValue(NameProperty, value); }
+            get { return name; }
+            set { name = value; OnPropertyChanged(); }
         }
+
+        private string description;
 
         public string Description
         {
-            get { return (string)GetValue(DescriptionProperty); }
-            set { SetValue(DescriptionProperty, value); }
+            get { return description; }
+            set { description = value; OnPropertyChanged(); }
         }
+
+        private float price;
 
         public float Price
         {
-            get { return (float)GetValue(PriceProperty); }
-            set { SetValue(PriceProperty, value); }
+            get { return price; }
+            set { price = value; OnPropertyChanged(); }
         }
+
+        private string imageAdress;
 
         public string ImageAdress
         {
-            get { return (string)GetValue(ImageAdressProperty); }
-            set { SetValue(ImageAdressProperty, value); }
+            get { return imageAdress; }
+            set { imageAdress = value; OnPropertyChanged(); }
         }
 
 
-        public static readonly DependencyProperty IdProperty =
-             DependencyProperty.Register("Id", typeof(int), typeof(Product));
 
-        public static readonly DependencyProperty NameProperty =
-            DependencyProperty.Register("Name", typeof(string), typeof(Product));
 
-        public static readonly DependencyProperty DescriptionProperty =
-            DependencyProperty.Register("Description", typeof(string), typeof(Product));
-
-        public static readonly DependencyProperty ImageAdressProperty =
-            DependencyProperty.Register("ImageAdress", typeof(string), typeof(Product));
-
-        public static readonly DependencyProperty PriceProperty =
-            DependencyProperty.Register("Price", typeof(float), typeof(Product));
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
 
         #endregion
 
@@ -67,9 +72,9 @@ namespace WpfWolfStore.Model
             Description = description;
             Price = price;
             ImageAdress = imageAdress;
-            Id = ++GlobalId;
+            ID = ++GlobalId;
         }
 
-        public override string ToString() => Id.ToString();
+        public override string ToString() => ID.ToString();
     }
 }
