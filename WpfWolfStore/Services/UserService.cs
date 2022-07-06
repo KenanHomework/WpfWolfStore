@@ -55,7 +55,7 @@ namespace WpfWolfStore.Services
 
             try
             {
-                return JsonSerializer.Deserialize<User>(File.ReadAllText($"Data/{username}.json"));
+                return JSONService.Read<User>($"Data/{username}.json");
             }
             catch (Exception) { throw; }
         }

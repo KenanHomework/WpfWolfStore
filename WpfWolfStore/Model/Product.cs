@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace WpfWolfStore.Model
 {
-    public class Product : DependencyObject
+    public class Product
     {
         public static int GlobalId = 0;
 
@@ -74,6 +74,8 @@ namespace WpfWolfStore.Model
             ImageAdress = imageAdress;
             ID = ++GlobalId;
         }
+
+        public Product() { }
 
         public override string ToString() => ID.ToString();
     }

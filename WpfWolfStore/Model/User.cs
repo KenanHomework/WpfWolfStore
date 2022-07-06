@@ -8,7 +8,9 @@ using WpfWolfStore.Model;
 public class User
 {
 
-    private string username;
+    #region Properties
+
+    private string username = string.Empty;
 
     public string Username
     {
@@ -16,7 +18,7 @@ public class User
         set { username = value; OnPropertyChanged(); }
     }
 
-    private string password;
+    private string password = string.Empty;
 
     public string Password
     {
@@ -33,7 +35,7 @@ public class User
     }
 
 
-    private ObservableCollection<Product> card;
+    private ObservableCollection<Product> card = new();
 
     public ObservableCollection<Product> Card
     {
@@ -47,6 +49,9 @@ public class User
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 
+    #endregion
+
+    #region Methods
 
     public void Buy() => Card.Clear();
 
@@ -54,28 +59,24 @@ public class User
 
     public void RemoveFromCard(Product product) => Card.Remove(product);
 
+    #endregion
 
-    public User(string username, string password, MailAddress email) : this()
+    public User(string username, string password, MailAddress email) 
     {
         Username = username;
         Password = password;
         Email = email;
     }
-    public User(string username, string password, string email) : this()
+    public User(string username, string password, string email) 
     {
         Username = username;
         Password = password;
         Email = new(email);
     }
 
-    User()
-    {
-        Username = string.Empty;
-        Password = string.Empty;
-        //Card = new();
-    }
+    User() { }
 
-    public User(string username, string password) : this()
+    public User(string username, string password) 
     {
         Username = username;
         Password = password;

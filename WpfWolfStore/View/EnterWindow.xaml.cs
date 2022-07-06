@@ -30,11 +30,10 @@ namespace WpfWolfStore.View
             if (!Directory.Exists("Data"))
                 Directory.CreateDirectory("Data");
             Frame.Navigate(new LoginGeneralPage());
-            UserService.WriteUser(new("kenan", "kenanYsbv", "kenanysbv@gmail.com"));
-            //File.WriteAllText("data/kenan.json", JsonSerializer.Serialize(new User("kenan", "kenanYsbv", "kenanysbv@gmail.com")));
-
+            User data = new("kenan", "kenanYsbv", "kenanysbv@gmail.com");
+            UserService.WriteUser(data);
+            User user = JsonSerializer.Deserialize<User>(File.ReadAllText($"data/{data.Username}.json"));
             //App.WolfStore.Save();
-            //User user = UserService.ReadUser("kenan");
             //string a = user.ToString();
             //Store store = new(true);
             //User user = UserService.ReadUser("test");
